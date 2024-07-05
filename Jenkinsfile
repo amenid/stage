@@ -4,7 +4,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Clone the repository
-                git branch: 'main', url: 'git@github.com:amenid/stage.git'
+                git branch: 'master', url: 'git@github.com:amenid/stage.git'
             }
         }
         stage('Build') {
