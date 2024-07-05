@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,16 +11,10 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Build Angular
-                /*    dir('ui/todo') {
-                        sh 'pwd'
-                        sh 'cd todo'
-                        sh 'npm install'
-                        sh 'npm run build'
-                    }*/
                     // Build .NET Core
                     dir('api/WebApplication1/WebApplication1') {
-                        sh 'dotnet build'
+                        sh 'dotnet restore'  // Restaurer les packages NuGet si nécessaire
+                        sh 'dotnet build'    // Construire le projet
                     }
                 }
             }
@@ -27,13 +22,9 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Test Angular
-                   // dir('frontend') {
-                      //  sh 'npm run test'
-                  //  }
                     // Test .NET Core
                     dir('backend/WebApplication1/WebApplication1') {
-                        sh 'dotnet test'
+                        sh 'dotnet test'     // Exécuter les tests unitaires
                     }
                 }
             }
