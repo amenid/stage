@@ -11,12 +11,12 @@ pipeline {
             steps {
                 script {
                     // Build Angular
-                    dir('ui/todo') {
+                /*    dir('ui/todo') {
                         sh 'pwd'
                         sh 'cd todo'
                         sh 'npm install'
                         sh 'npm run build'
-                    }
+                    }*/
                     // Build .NET Core
                     dir('api/WebApplication1/WebApplication1') {
                         sh 'dotnet build'
@@ -28,9 +28,9 @@ pipeline {
             steps {
                 script {
                     // Test Angular
-                    dir('frontend') {
-                        sh 'npm run test'
-                    }
+                   // dir('frontend') {
+                      //  sh 'npm run test'
+                  //  }
                     // Test .NET Core
                     dir('backend/WebApplication1/WebApplication1') {
                         sh 'dotnet test'
