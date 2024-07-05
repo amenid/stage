@@ -13,6 +13,7 @@ pipeline {
                     // Build Angular
                     dir('frontend') {
                         sh 'pwd'
+                        cd 'todo'
                         sh 'npm install'
                         sh 'npm run build'
                     }
