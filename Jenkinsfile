@@ -1,26 +1,45 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout') {
+            steps {
+                // Clone the repository
+                git branch: 'main', url: 'git@github.com:amenid/stage.git'
+            }
+        }
         stage('Build') {
             steps {
-                // Commandes pour build Angular
-                sh 'cd ./ui/todo && npm install && npm run build'
-
-                // Commandes pour build .NET Core
-                sh 'cd ./api/WebApplication1/WebApplication1 && dotnet build' 
+                script {
+                    // Build Angular
+                    dir('frontend') {
+                        sh 'npm install'
+                        sh 'npm run build'
+                    }
+                    // Build .NET Core
+                    dir('backend/WebApplication1/WebApplication1') {
+                        sh 'dotnet build'
+                    }
+                }
             }
         }
         stage('Test') {
             steps {
-                // Commandes pour lancer les tests
-                sh 'cd ./ui/todo && npm run test' 
-                sh 'cd ./api/WebApplication1/WebApplication1 && dotnet test' 
+                script {
+                    // Test Angular
+                    dir('frontend') {
+                        sh 'npm run test'
+                    }
+                    // Test .NET Core
+                    dir('backend/WebApplication1/WebApplication1') {
+                        sh 'dotnet test'
+                    }
+                }
             }
         }
         stage('Deploy') {
             steps {
-                echo 'Nothing to do here yet!'  //  <--  "خطوة"  "فارغة"
+                echo 'Nothing to do here yet!'  // Placeholder for deployment steps
             }
-        } 
+        }
     }
 }
