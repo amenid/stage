@@ -11,14 +11,14 @@ pipeline {
             steps {
                 script {
                     // Build Angular
-                    dir('frontend') {
+                    dir('ui/todo') {
                         sh 'pwd'
                         sh 'cd todo'
                         sh 'npm install'
                         sh 'npm run build'
                     }
                     // Build .NET Core
-                    dir('backend/WebApplication1/WebApplication1') {
+                    dir('api/WebApplication1/WebApplication1') {
                         sh 'dotnet build'
                     }
                 }
