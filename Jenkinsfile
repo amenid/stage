@@ -12,7 +12,7 @@ pipeline {
                 script {
                     // Build Angular
                     dir('frontend') {
-                        sh 'ls'
+                        sh 'pwd'
                         sh 'npm install'
                         sh 'npm run build'
                     }
