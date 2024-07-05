@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                //  ... Commandes  l  "deploy"  hné
+                echo 'Nothing to do here yet!'  //  <--  "خطوة"  "فارغة"
             }
         } 
     }
